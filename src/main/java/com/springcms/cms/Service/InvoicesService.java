@@ -6,5 +6,7 @@ import java.util.List;
 
 public interface InvoicesService {
 
-    public List<Invoices> findAll();
+    List<Invoices> findAll();
+
+    Invoices findById(Long id);
 }

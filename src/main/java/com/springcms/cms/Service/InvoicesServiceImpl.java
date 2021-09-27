@@ -19,4 +19,9 @@ public class InvoicesServiceImpl implements InvoicesService{
         List<Invoices> invoices = new ArrayList<>(invoicesRepository.findAll());
         return invoices;
     }
+
+    @Override
+    public Invoices findById(Long id) {
+        return invoicesRepository.findById(id).get();
+    }
 }

@@ -14,8 +14,6 @@ public class Invoices {
     private float amount;
     private LocalDateTime sentAt;
     private String status;
-    @ManyToOne
-    private Customer customer;
     private int chrono;
 
     public Invoices() {
@@ -47,14 +45,6 @@ public class Invoices {
 
     public void setStatus(String status) {
         this.status = status;
-    }
-
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
     }
 
     public int getChrono() {

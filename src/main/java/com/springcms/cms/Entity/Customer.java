@@ -1,9 +1,8 @@
 package com.springcms.cms.Entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
+import java.util.*;
+import java.util.stream.Stream;
 
 @Entity
 public class Customer {
@@ -16,6 +15,12 @@ public class Customer {
     private String company;
     @ManyToOne
     private User user;
+    @OneToMany
+    private List<Invoices> invoices = new ArrayList<>();
+
+    public List<Invoices> getTotalAmount() {
+        return invoices;
+    }
 
     public Long getId() {
         return id;
