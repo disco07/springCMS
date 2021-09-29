@@ -1,16 +1,29 @@
 package com.springcms.cms.Entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import org.hibernate.validator.constraints.UniqueElements;
+
+import javax.persistence.*;
+import javax.validation.constraints.Email;
+import java.util.Collection;
 
 @Entity
 public class User {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
+    @Email
+    @UniqueElements
     private String email;
     private String password;
+    @ManyToMany
+    @JoinTable(
+            name = "users_roles",
+            joinColumns = @JoinColumn(
+                    name = "user_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(
+                    name = "role_id", referencedColumnName = "id"))
+    private Collection<Role> roles;
     private String firstName;
     private String lastName;
 

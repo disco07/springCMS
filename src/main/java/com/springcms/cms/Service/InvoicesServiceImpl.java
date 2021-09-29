@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class InvoicesServiceImpl implements InvoicesService{
@@ -21,7 +22,7 @@ public class InvoicesServiceImpl implements InvoicesService{
     }
 
     @Override
-    public Invoices findById(Long id) {
-        return invoicesRepository.findById(id).get();
+    public Optional<Invoices> findById(Long id) {
+        return invoicesRepository.findById(id);
     }
 }

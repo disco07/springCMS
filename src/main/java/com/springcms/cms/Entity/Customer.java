@@ -7,6 +7,7 @@ import java.util.stream.Stream;
 @Entity
 public class Customer {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
     private String firstName;
@@ -15,11 +16,23 @@ public class Customer {
     private String company;
     @ManyToOne
     private User user;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Invoices> invoices = new ArrayList<>();
 
-    public List<Invoices> getTotalAmount() {
-        return invoices;
+    public float getTotalAmount() {
+        float total = 0;
+        for (Invoices invoice:invoices) {
+            total += invoice.getAmount();
+        }
+        return total;
+    }
+
+    public float getUnpaidAmount() {
+        float total = 0;
+        for (Invoices invoice:invoices) {
+            total += Objects.equals(invoice.getStatus(), "CANCELLED") || Objects.equals(invoice.getStatus(), "PAID") ? 0 : invoice.getAmount();
+        }
+        return total;
     }
 
     public Long getId() {
