@@ -1,8 +1,10 @@
 package com.springcms.cms.Entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 import java.util.*;
-import java.util.stream.Stream;
 
 @Entity
 public class Customer {
@@ -10,8 +12,14 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
+    @NotBlank
+    @Min(value = 3)
     private String firstName;
+    @NotBlank
+    @Min(value = 3)
     private String lastName;
+    @NotBlank
+    @Email
     private String email;
     private String company;
     @ManyToOne
