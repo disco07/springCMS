@@ -10,4 +10,10 @@ public interface InvoicesService {
     List<Invoices> findAll();
 
     Optional<Invoices> findById(Long id);
+
+    Invoices createFrenchRadar(Invoices invoices);
+
+    void putInvoice(Invoices invoice);
+
+    void deleteInvoice(Long id);
 }

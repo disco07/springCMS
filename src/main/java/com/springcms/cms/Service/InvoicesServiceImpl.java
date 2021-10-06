@@ -25,4 +25,19 @@ public class InvoicesServiceImpl implements InvoicesService{
     public Optional<Invoices> findById(Long id) {
         return invoicesRepository.findById(id);
     }
+
+    @Override
+    public Invoices createFrenchRadar(Invoices invoices) {
+        return invoicesRepository.save(invoices);
+    }
+
+    @Override
+    public void putInvoice(Invoices invoice) {
+
+    }
+
+    @Override
+    public void deleteInvoice(Long id) {
+
+    }
 }
