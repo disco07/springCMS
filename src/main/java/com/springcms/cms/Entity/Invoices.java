@@ -1,6 +1,7 @@
 package com.springcms.cms.Entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
 
 @Entity
@@ -9,11 +10,16 @@ public class Invoices {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
+    @NotBlank(message = "Le montant est obligatoire")
     private float amount;
+    @NotBlank(message = "La date ne doit pas être vide")
     private LocalDateTime sentAt;
+    @NotBlank(message = "Le status est obigatoire")
     private String status;
     @ManyToOne
+    @NotBlank(message = "Le client doit être renseigné")
     private Customer customer;
+    @NotBlank(message = "Il faut absolument une facture")
     private int chrono;
 
     public Invoices() {

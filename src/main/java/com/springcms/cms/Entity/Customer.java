@@ -12,17 +12,18 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
-    @NotBlank
+    @NotBlank(message = "Le prénom ne doit pas être vide")
     @Min(value = 3)
     private String firstName;
-    @NotBlank
+    @NotBlank(message = "Le nom ne doit pas être vide")
     @Min(value = 3)
     private String lastName;
-    @NotBlank
-    @Email
+    @NotBlank(message = "L'adresse email ne doit pas être vide")
+    @Email(message = "Le format de l'adresse email doit être valide")
     private String email;
     private String company;
     @ManyToOne
+    @NotBlank(message = "L'utiisateur est obligatoire")
     private User user;
     @OneToMany(cascade = CascadeType.ALL)
     private List<Invoices> invoices = new ArrayList<>();
