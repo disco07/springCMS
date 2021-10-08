@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -35,7 +36,7 @@ public class InvoicesController {
     }
 
     @PostMapping
-    public ResponseEntity createInvoice(@RequestBody Invoices invoice) {
+    public ResponseEntity createInvoice(@RequestBody @Valid Invoices invoice) {
         invoicesService.createFrenchRadar(invoice);
         return new ResponseEntity(HttpStatus.CREATED);
     }
@@ -47,7 +48,7 @@ public class InvoicesController {
             return new ResponseEntity("Cette facture n'existe pas", HttpStatus.BAD_REQUEST);
         }
         invoicesService.putInvoice(invoices);
-        return new ResponseEntity(HttpStatus.CREATED);
+        return new ResponseEntity(HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
