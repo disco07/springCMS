@@ -1,8 +1,8 @@
 package com.springcms.cms.Service;
 
-import com.springcms.cms.Entity.User;
+import com.springcms.cms.Security.MyUserDetails;
 
 public interface UserService {
 
-    User findByEmail(String email);
+    MyUserDetails findByEmail(String email);
 }
